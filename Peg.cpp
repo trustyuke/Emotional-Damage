@@ -2,7 +2,7 @@
 
 Peg::Peg(int x_loc, int y_loc,int style){
     x = x_loc;
-    y = y_loc; 
+    y = y_loc;  
     int x_empty,y_empty; 
     switch(style){
         case 1:{

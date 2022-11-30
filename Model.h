@@ -27,6 +27,9 @@ public:
 
     // update the move and check to see if game could be continued 
     void Update();
+
+    // check to see if game could be continued (if not, print # of peg left)
+    bool IsGameOver(); 
 };
 
 #endif 

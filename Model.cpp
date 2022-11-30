@@ -52,7 +52,7 @@ Model::Model(int style){
             }
             
         }
-        cout << peg_count << endl; 
+        // cout << peg_count << endl; 
     }
 
     if (style == 1){
@@ -78,7 +78,7 @@ Model::Model(int style){
             peg_ptrs[peg_count] = new Peg(x,board_size-1,style);
             peg_count++;
         }
-        cout << peg_count << endl;
+        // cout << peg_count << endl;
     }
 
     if(style == 4){
@@ -109,9 +109,9 @@ Model::Model(int style){
         peg_ptrs[peg_count+3] = new Peg(8,4,style);
         peg_ptrs[peg_count+4] = new Peg(4,8,style);
         peg_count = peg_count +4; 
-        cout << peg_count << endl;
+        // cout << peg_count << endl;
     }
-    cout << peg_total << endl; 
+    // cout << peg_total << endl; 
 }
 
 
@@ -154,32 +154,31 @@ void Model::Find3coord(int x,int y,char dir_in){
 
 bool Model::IsMoveValid(){
     int valid_count = 0; 
-    cout << x_in << " " << y_in << endl; 
-    cout << x_eaten << " " << y_eaten << endl;
-    cout << x_dest << " " << y_dest << endl;
+    // cout << x_in << " " << y_in << endl; 
+    // cout << x_eaten << " " << y_eaten << endl;
+    // cout << x_dest << " " << y_dest << endl;
     //cout << peg_total << endl; 
     for (int i = 0;i < peg_total;i++){
         if (peg_ptrs[i] -> x == x_in && peg_ptrs[i] -> y == y_in){
             if (peg_ptrs[i] -> state == OCCUPIED){
-                cout << peg_ptrs[i] -> x << endl;
                 valid_count++;
-                cout << "case 1" << endl; 
+                // cout << "case 1" << endl; 
             }   
         }
         if (peg_ptrs[i] -> x == x_dest && peg_ptrs[i] -> y == y_dest){
             if (peg_ptrs[i] -> state == EMPTY){
                 valid_count++;
-                cout << "case 2" << endl; 
+                // cout << "case 2" << endl; 
             }   
         }
         if (peg_ptrs[i] -> x == x_eaten && peg_ptrs[i] -> y == y_eaten){
             if (peg_ptrs[i] -> state == OCCUPIED){
                 valid_count++;
-                cout << "case 3" << endl; 
+                // cout << "case 3" << endl; 
             }   
         }
     }
-    cout << "valid count: " << valid_count << endl;
+    // cout << "valid count: " << valid_count << endl;
     if (valid_count == 3){
         return true;
     }
@@ -189,7 +188,7 @@ bool Model::IsMoveValid(){
 
 }
 
-// update the move and check to see if game could be continued 
+// update the move 
 void Model::Update(){
     for (int i = 0;i < peg_total;i++){
         if (peg_ptrs[i] -> x == x_in && peg_ptrs[i] -> y == y_in){
@@ -202,8 +201,42 @@ void Model::Update(){
             peg_ptrs[i] -> state = EMPTY;
         }
     }
-    
 }
+
+// check to see if game could be continued (if not, print # of peg left)
+bool Model::IsGameOver(){
+     // check to see if game could be continued
+    int move_valid = 0; 
+    int peg_remaining = 0; 
+    char move[] = {'u','d','l','r'}; 
+    for (int i =0; i < peg_total; i++){
+        // check IsMoveValid on 4 directions for each peg
+        for (int j = 0; j < 4; j ++ ){
+            Find3coord(peg_ptrs[i] -> x,peg_ptrs[i] -> y,move[0]);
+            if(IsMoveValid()){
+                move_valid++; 
+            }
+        }
+
+        // count # of peg remained 
+        if (peg_ptrs[i] -> state == OCCUPIED){
+            peg_remaining ++;
+        }
+    }
+    if (move_valid == 0){
+        cout << "Game Over. There are " << peg_remaining << " pegs remained!" << endl; 
+        exit(0);
+        return true; 
+    }
+    else {
+        return false;       
+    }
+
+}
+    
+   
+    
+
 
           
 

@@ -34,13 +34,14 @@ int main(){
         // check if move is valid
 
         if(Game.IsMoveValid()){
-            Game.Update(); 
+            Game.Update();
+            valid = Game.IsGameOver(); 
         }
         else {
             cout << "Invalid move." << endl; 
             valid = false;
         }
-    }while(valid != false);
+    }while(valid == false);
 }
 
 
