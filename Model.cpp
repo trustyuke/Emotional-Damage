@@ -121,14 +121,14 @@ void Model::Find3coord(int x,int y,char dir_in){
     x_in = x-1; 
     y_in = y-1;
     switch(dir_in){
-        case 'd':{
+        case 'u':{
             x_dest = x_in;
             y_dest = y_in + 2;
             x_eaten = x_in;
             y_eaten = y_in + 1;
             break;
         }
-        case 'u':{
+        case 'd':{
             x_dest = x_in;
             y_dest = y_in - 2;
             x_eaten = x_in;
