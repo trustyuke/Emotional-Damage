@@ -23,6 +23,7 @@ int main(){
     
     // Start playing 
     do{
+        Game.displayBoard();
         cout << "Please give the x and y coord of peg you want to move:" << endl;
         cin >> x_in >> y_in; 
         cout << "Please give the direction you want to move up(u),down(d),left(l),right(r): " <<endl;
@@ -30,7 +31,7 @@ int main(){
 
         // Update Coordinate of 3 pegs 
         Game.Find3coord(x_in,y_in,dir_in);
-
+        
         // check if move is valid
 
         if(Game.IsMoveValid()){

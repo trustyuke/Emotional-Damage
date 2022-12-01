@@ -118,17 +118,17 @@ Model::Model(int style){
 
 // find three coordinate of peg 
 void Model::Find3coord(int x,int y,char dir_in){
-    x_in = x; 
-    y_in = y;
+    x_in = x-1; 
+    y_in = y-1;
     switch(dir_in){
-        case 'u':{
+        case 'd':{
             x_dest = x_in;
             y_dest = y_in + 2;
             x_eaten = x_in;
             y_eaten = y_in + 1;
             break;
         }
-        case 'd':{
+        case 'u':{
             x_dest = x_in;
             y_dest = y_in - 2;
             x_eaten = x_in;
@@ -203,6 +203,42 @@ void Model::Update(){
     }
 }
 
+// display the board
+void Model::displayBoard()
+{
+	for (int y_pos = board_size; y_pos >=0 ; y_pos--)
+	{
+		for (int x_pos = 0; x_pos < board_size; x_pos++)
+		{
+            bool exist=false;
+
+            for(int i=0; i<peg_total;i++)
+            {
+                if(peg_ptrs[i]->x==x_pos&&peg_ptrs[i]->y==y_pos)
+                {
+                    if(peg_ptrs[i]->state==EMPTY)
+                    {
+                        cout << "X";
+                    }
+                    else if(peg_ptrs[i]->state==OCCUPIED)
+                    {
+                        cout << "O";
+                    }
+                    cout << " ";
+                    exist=true;
+                }
+
+            }
+
+            if(exist==false)
+            {
+                cout << "  ";
+            }
+		}
+		cout << endl;
+	}
+}
+
 // check to see if game could be continued (if not, print # of peg left)
 bool Model::IsGameOver(){
      // check to see if game could be continued
@@ -212,7 +248,7 @@ bool Model::IsGameOver(){
     for (int i =0; i < peg_total; i++){
         // check IsMoveValid on 4 directions for each peg
         for (int j = 0; j < 4; j ++ ){
-            Find3coord(peg_ptrs[i] -> x,peg_ptrs[i] -> y,move[0]);
+            Find3coord(peg_ptrs[i] -> x,peg_ptrs[i] -> y,move[j]);
             if(IsMoveValid()){
                 move_valid++; 
             }
