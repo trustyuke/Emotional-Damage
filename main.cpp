@@ -24,10 +24,12 @@ int main(){
     // Start playing 
     do{
         Game.displayBoard();
-        cout << "Please give the x and y coord of peg you want to move:" << endl;
+        cout << "Please give the x and y coord of peg you want to move(From bottom left): " << endl;
         cin >> x_in >> y_in; 
         cout << "Please give the direction you want to move up(u),down(d),left(l),right(r): " <<endl;
         cin >> dir_in;
+
+        //quit command
         if(dir_in=='q')
         {
             exit(0);
