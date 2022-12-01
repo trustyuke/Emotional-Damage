@@ -15,6 +15,7 @@ public:
     int x_in, y_in; 
     int x_dest,y_dest; 
     int x_eaten,y_eaten; 
+    int STYLE;
     Peg *peg_ptrs[70];
     // parameter constructor 
     Model(int style);

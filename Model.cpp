@@ -2,6 +2,7 @@
 
 Model::Model(int style){
     // initialize
+    STYLE=style;
     switch(style){
         case 1:{
             board_size = 7;
@@ -206,6 +207,11 @@ void Model::Update(){
 // display the board
 void Model::displayBoard()
 {
+    if(STYLE==4) //YUKE UR CODE SO BAD!!!! THIS IS WHAT LEFT AFTER UR INITIALIZATION
+    {
+        board_size=9;
+        peg_total++;
+    }
 	for (int y_pos = board_size; y_pos >=0 ; y_pos--)
 	{
 		for (int x_pos = 0; x_pos < board_size; x_pos++)
