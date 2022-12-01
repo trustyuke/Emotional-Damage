@@ -28,7 +28,10 @@ int main(){
         cin >> x_in >> y_in; 
         cout << "Please give the direction you want to move up(u),down(d),left(l),right(r): " <<endl;
         cin >> dir_in;
-
+        if(dir_in=='q')
+        {
+            exit(0);
+        }
         // Update Coordinate of 3 pegs 
         Game.Find3coord(x_in,y_in,dir_in);
         
