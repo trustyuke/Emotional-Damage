@@ -9,6 +9,9 @@ Game Instruction:
 3. User first click on the starting peg that will have an orange highlight, and selected destination point to land, if it is invalid destination, command window will indicate it is a invalid move,  and user have to repeat number 3 again
 4. Once no valid moves exist, the pop up window will close, the command window will either indicate that Users have won the game or there are how many pegs left on the board.
 
+Installation Requirement
 
+1. Visual Studio C++ https://visualstudio.microsoft.com/vs/
+2. After installing the Visual Studio C++, install the easyX https://docs.easyx.cn/en-us/
 
 
